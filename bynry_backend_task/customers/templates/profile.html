@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>Email: {{ user.customer_email }}</p>
+
+
+    <h2>Your Service Requests</h2>
+    {% if user_requests %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Request Description</th>
+                    <th>Status</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in user_requests %}
+                    <tr>
+                        <td>{{ request.request_description }}</td>
+                        <td>{{ request.status }}</td>
+                        <td>{{ request.date_submitted }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't submitted any service requests yet.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
